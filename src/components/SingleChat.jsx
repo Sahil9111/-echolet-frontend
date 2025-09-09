@@ -46,6 +46,7 @@ function SingleChat() {
             try {
                 const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/message/${selectedChat._id}`, {
                     headers: { Authorization: `Bearer ${user.token}` },
+                    withCredentials: true,
                 });
 
                 setMessages(Array.isArray(data) ? data : data.messages || []);

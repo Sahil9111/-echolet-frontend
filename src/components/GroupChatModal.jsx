@@ -51,6 +51,7 @@ function GroupChatModal({ isOpen, onClose }) {
                 },
                 {
                     headers: { Authorization: `Bearer ${user.token}` },
+                    withCredentials: true,
                 }
             );
             setChat([data, ...chat]);

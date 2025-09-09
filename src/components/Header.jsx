@@ -15,7 +15,7 @@ function Header({ selectedChat, user }) {
     const [chatName, setChatName] = useState(selectedChat.chatName);
     const [members, setMembers] = useState(selectedChat.users);
     const { setSelectedChat } = useContext(UserContext);
-   
+
 
     // Keep state in sync when selectedChat changes
     useEffect(() => {
@@ -30,7 +30,11 @@ function Header({ selectedChat, user }) {
             const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/chat/rename`, {
                 chatId: selectedChat._id,
                 chatName: newName,
-            });
+            },
+                {
+                    withCredentials: true, // ← ensures cookies are sent
+                }
+            );
 
             setChatName(data.chatName || newName);
             setIsModalOpen(false);
@@ -46,6 +50,8 @@ function Header({ selectedChat, user }) {
             const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/chat/group-add`, {
                 chatId: selectedChat._id,
                 userId,
+            }, {
+                withCredentials: true, // ← ensures cookies are sent
             });
 
             setMembers(data.users);
@@ -57,11 +63,13 @@ function Header({ selectedChat, user }) {
 
     const handleRemoveMember = async (userId) => {
         if (!selectedChat.isGroupChat || selectedChat.groupAdmin._id !== user._id
-) return
+        ) return
         try {
             const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/chat/group-remove`, {
                 chatId: selectedChat._id,
                 userId: userId,
+            }, {
+                withCredentials: true, // ← ensures cookies are sent
             });
 
             // Update members state to remove the user locally
@@ -82,7 +90,9 @@ function Header({ selectedChat, user }) {
         try {
             const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/chat/group-remove`, {
                 chatId: selectedChat._id,
-                userId: user._id, 
+                userId: user._id,
+            }, {
+                withCredentials: true, // ← ensures cookies are sent
             });
 
             console.log("Left group successfully:", data);

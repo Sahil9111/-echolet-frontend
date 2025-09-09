@@ -18,7 +18,8 @@ function CreateGrp() {
             const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/chat/group`,
                 form,
                 {
-                    headers: { "Content-Type": "application/json"}
+                    headers: { "Content-Type": "application/json"},
+                    withCredentials: true,
                 }
             );
             if (data) {

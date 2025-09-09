@@ -21,6 +21,7 @@ function Sidebar() {
         try {
             const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/chat/`, {
                 headers: { "Content-Type": "application/json" },
+                withCredentials: true,
             });
 
             console.log({ "Chats fetched": data });
@@ -34,6 +35,7 @@ function Sidebar() {
         try {
             const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/chat/`, { userId }, {
                 headers: { "Content-Type": "application/json" },
+                withCredentials: true,
             });
             if (data && data._id && !chat.find((c) => c._id === data._id)) {
                 setChat([data, ...chat]);
