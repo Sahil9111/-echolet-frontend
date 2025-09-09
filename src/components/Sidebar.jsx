@@ -20,7 +20,9 @@ function Sidebar() {
 
         try {
             const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/chat/`, {
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json",
+                    Authorization: `Bearer ${user?.accessToken}`
+                 },
                 withCredentials: true,
             });
 
@@ -34,7 +36,9 @@ function Sidebar() {
     const accessChat = async (userId) => {
         try {
             const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/chat/`, { userId }, {
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json",
+                    Authorization: `Bearer ${user?.accessToken}`
+                 },
                 withCredentials: true,
             });
             if (data && data._id && !chat.find((c) => c._id === data._id)) {
