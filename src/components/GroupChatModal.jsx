@@ -19,6 +19,7 @@ function GroupChatModal({ isOpen, onClose }) {
         try {
             const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/user?search=${query}`, {
                 headers: { Authorization: `Bearer ${user.token}` },
+                withCredentials: true,
             });
             setSearchResult(data);
             console.log("ye h hmare search ", data)

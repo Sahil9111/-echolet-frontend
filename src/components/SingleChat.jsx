@@ -23,8 +23,8 @@ function SingleChat() {
 
     // Initialize socket
     useEffect(() => {
-        
-    // console.log(selectedChat)
+
+        // console.log(selectedChat)
         socket = io(import.meta.env.VITE_ENDPOINT);
         socket.emit("setup", user);
         socket.on("connect", () => setSocketConnected(true));
@@ -87,7 +87,10 @@ function SingleChat() {
             const { data } = await axios.post(
                 `${import.meta.env.VITE_API_URL}/message`,
                 { content: input, chatId: selectedChat._id },
-                { headers: { Authorization: `Bearer ${user.token}` } }
+                {
+                    headers: { Authorization: `Bearer ${user.token}` },
+                    withCredentials: true,
+                }
             );
 
             const newMessage = data.message || data;

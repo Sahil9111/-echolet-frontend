@@ -21,6 +21,7 @@ function SearchInput() {
                             "Content-Type": "application/json",
                             Authorization: `Bearer ${user?.accessToken}`,
                         },
+                        withCredentials: true,
                     }
                 );
 
