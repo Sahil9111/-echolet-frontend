@@ -26,7 +26,7 @@ function Login() {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/user/login",
+      const { data } = await axios.post(`${process.env.VITE_API_URL}/api/user/login`,
         form,
         {
           headers: { "Content-Type": "application/json" },
