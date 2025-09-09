@@ -7,8 +7,6 @@ import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../../context/user/UserContex.jsx";
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 
 function Login() {
   const { login } = useContext(UserContext)
@@ -26,7 +24,7 @@ function Login() {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`${API_URL}/user/login`,
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/user/login`,
         form,
         {
           headers: { "Content-Type": "application/json" },

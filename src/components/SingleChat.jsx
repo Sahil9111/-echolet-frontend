@@ -25,7 +25,7 @@ function SingleChat() {
     useEffect(() => {
         
     // console.log(selectedChat)
-        socket = io(process.env.ENDPOINT);
+        socket = io(import.meta.env.ENDPOINTL);
         socket.emit("setup", user);
         socket.on("connect", () => setSocketConnected(true));
 
@@ -44,7 +44,7 @@ function SingleChat() {
         const fetchMessages = async () => {
             if (!selectedChat?._id) return;
             try {
-                const { data } = await axios.get(`/api/message/${selectedChat._id}`, {
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/message/${selectedChat._id}`, {
                     headers: { Authorization: `Bearer ${user.token}` },
                 });
 
@@ -84,7 +84,7 @@ function SingleChat() {
 
         try {
             const { data } = await axios.post(
-                "/api/message",
+                `${import.meta.env.VITE_API_URL}/message`,
                 { content: input, chatId: selectedChat._id },
                 { headers: { Authorization: `Bearer ${user.token}` } }
             );

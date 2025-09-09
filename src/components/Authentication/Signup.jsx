@@ -34,7 +34,7 @@ function Signup() {
 
     try {
       setUploading(true);
-      const { data } = await axios.post("/api/user/register", formData, {
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/user/register`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (data.user) {

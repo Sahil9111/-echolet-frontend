@@ -17,7 +17,7 @@ function GroupChatModal({ isOpen, onClose }) {
         setSearch(query);
         if (!query) return;
         try {
-            const { data } = await axios.get(`/api/user?search=${query}`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/user?search=${query}`, {
                 headers: { Authorization: `Bearer ${user.token}` },
             });
             setSearchResult(data);
@@ -44,7 +44,7 @@ function GroupChatModal({ isOpen, onClose }) {
 
         try {
             const { data } = await axios.post(
-                "/api/chat/group",
+                `${import.meta.env.VITE_API_URL}/chat/group`,
                 {
                     name: groupName,
                     users: JSON.stringify(selectedUsers.map((u) => u._id)),

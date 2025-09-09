@@ -15,7 +15,7 @@ function CreateGrp() {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post("/api/chat/group",
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/chat/group`,
                 form,
                 {
                     headers: { "Content-Type": "application/json"}

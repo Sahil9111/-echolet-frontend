@@ -15,7 +15,7 @@ function SearchInput() {
 
         if (query !== "") {
             try {
-                const { data } = await axios.get(`/api/user?search=${query}`,
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/user?search=${query}`,
                     {
                         headers: {
                             "Content-Type": "application/json",

@@ -27,7 +27,7 @@ function Header({ selectedChat, user }) {
         if (!selectedChat.isGroupChat) return
         if (!selectedChat.groupAdmin) return
         try {
-            const { data } = await axios.put("/api/chat/rename", {
+            const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/chat/rename`, {
                 chatId: selectedChat._id,
                 chatName: newName,
             });
@@ -43,7 +43,7 @@ function Header({ selectedChat, user }) {
         if (!selectedChat.isGroupChat) return
         if (!selectedChat.groupAdmin) return
         try {
-            const { data } = await axios.put("/api/chat/group-add", {
+            const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/chat/group-add`, {
                 chatId: selectedChat._id,
                 userId,
             });
@@ -59,7 +59,7 @@ function Header({ selectedChat, user }) {
         if (!selectedChat.isGroupChat || selectedChat.groupAdmin._id !== user._id
 ) return
         try {
-            const { data } = await axios.put("/api/chat/group-remove", {
+            const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/chat/group-remove`, {
                 chatId: selectedChat._id,
                 userId: userId,
             });
@@ -80,7 +80,7 @@ function Header({ selectedChat, user }) {
     const handleLeaveGroup = async () => {
         if (!selectedChat.isGroupChat) return
         try {
-            const { data } = await axios.put("/api/chat/group-remove", {
+            const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/chat/group-remove`, {
                 chatId: selectedChat._id,
                 userId: user._id, 
             });
