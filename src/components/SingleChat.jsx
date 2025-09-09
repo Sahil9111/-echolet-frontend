@@ -25,7 +25,7 @@ function SingleChat() {
     useEffect(() => {
         
     // console.log(selectedChat)
-        socket = io(import.meta.env.ENDPOINTL);
+        socket = io(import.meta.env.VITE_ENDPOINT);
         socket.emit("setup", user);
         socket.on("connect", () => setSocketConnected(true));
 
