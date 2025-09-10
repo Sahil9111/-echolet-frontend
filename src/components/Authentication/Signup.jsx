@@ -7,7 +7,12 @@ import { useContext } from "react";
 import { UserContext } from "../../context/user/UserContex.jsx";
 
 function Signup() {
-  const { login } = useContext(UserContext)
+  const { login, setChat,
+      setSelectedChat,
+      setFetchedFriendChats,
+      setActiveChatContext,
+      setSearchResult,
+      setSearch } = useContext(UserContext)
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: '', email: '', password: '' });
 
@@ -46,6 +51,12 @@ function Signup() {
       if (data.user) {
         console.log({ "Signup successful": data });
         login(data.user)
+        setChat([]);
+        setSelectedChat(null);
+        setFetchedFriendChats([]);
+        setActiveChatContext(null);
+        setSearchResult([]);
+        setSearch(null);
         navigate("/chat");
       }
       alert("Signup successful!");
