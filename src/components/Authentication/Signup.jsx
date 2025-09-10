@@ -2,7 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+//context
+import { useContext } from "react";
+import { UserContext } from "../../context/user/UserContex.jsx";
+
 function Signup() {
+  const { login } = useContext(UserContext)
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: '', email: '', password: '' });
 
@@ -36,9 +41,11 @@ function Signup() {
       setUploading(true);
       const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/user/register`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
+        // withCredentials: true ,
       });
       if (data.user) {
         console.log({ "Signup successful": data });
+        login(data.user)
         navigate("/chat");
       }
       alert("Signup successful!");
