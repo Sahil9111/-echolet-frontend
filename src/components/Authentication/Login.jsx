@@ -52,6 +52,9 @@ function Login() {
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Welcome Back
         </h2>
+        <h6 className="text-2xl font-bold text-center text-green-800 mb-6">
+          Your browser must allow third party cookies
+        </h6>
 
         <form className="space-y-4" onSubmit={onSubmitHandler}>
           <div>
