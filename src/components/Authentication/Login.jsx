@@ -11,7 +11,7 @@ import { UserContext } from "../../context/user/UserContex.jsx";
 function Login() {
   const { login } = useContext(UserContext)
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ email: 'user@gmail.com', password: '123' });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
