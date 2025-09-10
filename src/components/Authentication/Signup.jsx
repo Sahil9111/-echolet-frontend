@@ -40,6 +40,7 @@ function Signup() {
       });
       if (data.user) {
         console.log({ "Signup successful": data });
+        login(data.user)
         navigate("/chat");
       }
       alert("Signup successful!");
