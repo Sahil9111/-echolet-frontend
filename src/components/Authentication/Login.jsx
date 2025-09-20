@@ -55,6 +55,9 @@ function Login() {
         <h6 className="text-2xl font-bold text-center text-green-800 mb-6">
           Your browser must allow third party cookies
         </h6>
+        <h6 className="text-sm text-center text-gray-700 mb-6">
+          render server may take upto 30 seconds to login for first time
+        </h6>
 
         <form className="space-y-4" onSubmit={onSubmitHandler}>
           <div>
